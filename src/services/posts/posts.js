@@ -37,7 +37,12 @@ export const posts = (app) => {
       all: [schemaHooks.validateQuery(postsQueryValidator), schemaHooks.resolveQuery(postsQueryResolver)],
       find: [],
       get: [],
-      create: [schemaHooks.validateData(postsDataValidator), schemaHooks.resolveData(postsDataResolver)],
+      create: [schemaHooks.validateData(postsDataValidator), schemaHooks.resolveData(postsDataResolver),
+        async (context) => {
+          context.data.created_at = new Date();
+          return context;
+        }
+      ],
       patch: [schemaHooks.validateData(postsPatchValidator), schemaHooks.resolveData(postsPatchResolver)],
       remove: []
     },

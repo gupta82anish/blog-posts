@@ -5,7 +5,7 @@ export class PostsService extends KnexService {
   async find(params){
     params.query = {
       ...params.query,
-      $select: ['id','title','description','date_published'],
+      $select: ['id','title','description','created_at','updated_at'],
       // $limit: params.query.limit
     }
     return super.find(params);
