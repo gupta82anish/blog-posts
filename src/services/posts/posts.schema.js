@@ -2,7 +2,6 @@
 import { resolve, getValidator, querySyntax } from '@feathersjs/schema'
 import { dataValidator, queryValidator } from '../../validators.js'
 
-
 // export const postsSchema = {
 //   $id: 'Posts',
 //   type: 'object',
@@ -17,7 +16,7 @@ import { dataValidator, queryValidator } from '../../validators.js'
 export const postsSchema = {
   $id: 'Posts',
   type: 'object',
-  additionalProperties: false,
+  additionalProperties: true,
   required: ['id','title', 'content', 'date_published', 'description', 'author'],
   properties: {
       id: { type: 'number' },
@@ -38,7 +37,7 @@ export const postsExternalResolver = resolve({})
 export const postsDataSchema = {
   $id: 'PostsData',
   type: 'object',
-  additionalProperties: false,
+  additionalProperties: true,
   required: ['title', 'content', 'date_published', 'description', 'author'],
   properties: {
     ...postsSchema.properties
@@ -51,7 +50,7 @@ export const postsDataResolver = resolve({})
 export const postsPatchSchema = {
   $id: 'PostsPatch',
   type: 'object',
-  additionalProperties: false,
+  additionalProperties: true,
   required: [],
   properties: {
     ...postsSchema.properties
@@ -64,10 +63,11 @@ export const postsPatchResolver = resolve({})
 export const postsQuerySchema = {
   $id: 'PostsQuery',
   type: 'object',
-  additionalProperties: false,
+  additionalProperties: true,
   properties: {
     ...querySyntax(postsSchema.properties)
   }
 }
+
 export const postsQueryValidator = getValidator(postsQuerySchema, queryValidator)
 export const postsQueryResolver = resolve({})
