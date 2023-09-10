@@ -39,11 +39,18 @@ export const posts = (app) => {
       get: [],
       create: [schemaHooks.validateData(postsDataValidator), schemaHooks.resolveData(postsDataResolver),
         async (context) => {
-          context.data.created_at = new Date();
+          let current_time = new Date();
+          context.data.created_at = current_time;
+          context.data.updated_at = current_time;
           return context;
         }
       ],
-      patch: [schemaHooks.validateData(postsPatchValidator), schemaHooks.resolveData(postsPatchResolver)],
+      patch: [schemaHooks.validateData(postsPatchValidator), schemaHooks.resolveData(postsPatchResolver),
+        async (context) => {
+          context.data.updated_at = new Date()
+          return context;
+        }
+      ],
       remove: []
     },
     after: {

@@ -17,7 +17,7 @@ export const postsSchema = {
   $id: 'Posts',
   type: 'object',
   additionalProperties: true,
-  required: ['id','title', 'content', 'description', 'author'],
+  required: ['id','title', 'content', 'description'],
   properties: {
       id: { type: 'number' },
       title: { type: 'string' },
@@ -25,7 +25,6 @@ export const postsSchema = {
       created_at: { type: 'string', format: 'date-time' },
       updated_at: { type: 'string', format: 'date-time' },
       description: { type: 'string' },
-      author: { type: 'string' },
   }
 }
 
@@ -39,7 +38,7 @@ export const postsDataSchema = {
   $id: 'PostsData',
   type: 'object',
   additionalProperties: true,
-  required: ['title', 'content', 'description', 'author'],
+  required: ['title', 'content', 'description'],
   properties: {
     ...postsSchema.properties
   }
