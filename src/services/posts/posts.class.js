@@ -9,6 +9,7 @@ export class PostsService extends KnexService {
       $select: ['id','title','description','created_at','updated_at'],
       $limit: params.query.$limit || 20,
       $skip: params.query.$skip,
+      $sort: {updated_at: -1}
     }
     return super.find(params);
   }
